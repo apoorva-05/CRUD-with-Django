@@ -10,4 +10,6 @@ urlpatterns = [
     path('add/', views.add_item, name='add'),
     path('edit/<int:item_id>/', views.edit_item, name='edit'),
     path('update/<int:item_id>/', views.update_item, name='update'),
+    path('edit/<int:item_id>/', views.edit_item, name='edit'),
+    path('update/<int:item_id>/', views.update_item, name='update'),
 ]
