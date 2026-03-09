@@ -7,7 +7,7 @@
 }
 
 body {
-  background-image: url("../images/background.jpg"); /* relative to CSS file */
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,6 +23,7 @@ body {
   border-radius: 10px;
   max-width: 500px;
   margin: 2rem auto;
+  background-color: transparent;
 }
 
 .section-center h2 {
@@ -32,56 +33,19 @@ body {
 }
 
 .alert {
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
+  color: red;
 }
 
 .alert-success {
   background: transparent;
-  color: #065f46;
 }
 
 .alert-error {
   background: transparent;
-  color: #065f46;
-}
-/* .... existing styles .... */
-
-.alert {
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  text-align: center;
-}
-
-.alert-success {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.alert-error {
-  background: #fee2e2;
-  color: #991b1b;
-}
-/* .... existing styles .... */
-
-.alert {
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  text-align: center;
-}
-
-.alert-success {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.alert-error {
-  background: #fee2e2;
-  color: #991b1b;
 }

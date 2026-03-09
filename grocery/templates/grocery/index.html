@@ -16,6 +16,19 @@
   </head>
   <body>
     <section class="section-center">
+      <!-- Messages -->
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+        <p
+          class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+        >
+          {{ message }}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <!-- Add / Edit Form -->
       <form
         method="POST"
@@ -43,39 +56,28 @@
         </div>
       </form>
 
+      <!-- Items List -->
       <div class="items">
         {% for item in items %}
         <div class="single-item">
+          <!-- Toggle Completed  -->
           <form method="POST" action="{% url 'grocery:toggle' item.id %}">
-            {% csrf_token %}
-            <input
-              type="checkbox"
-              {%
-              if
-              item.completed
-              %}checked{%
-              endif
-              %}
-              onclick="
-                this.form.submit();
-                this.disabled = true;
-              "
-            />
+              {% csrf_token %}
+              <input type="checkbox"
+                      {% if item.completed %}checked{% endif %}
+                      onchange="this.form.submit()" />
           </form>
+          <p style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %}">{{ item.name }}</p>
 
-          <p
-            style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %};"
-          >
-            {{ item.name }}
-          </p>
-
+          <!-- Edit Button -->
           <a
             href="{% url 'grocery:edit' item.id %}"
             class="btn icon-btn edit-btn"
           >
-            <i class="fa-regular fa-pen-to-square"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
           </a>
 
+          <!-- Delete Button -->
           <form
             method="POST"
             action="{% url 'grocery:delete' item.id %}"
@@ -83,12 +85,11 @@
           >
             {% csrf_token %}
             <button type="submit" class="btn icon-btn remove-btn">
-              <i class="fa-regular fa-trash-can"></i>
+              <i class="fa-solid fa-trash-can"></i>
             </button>
           </form>
-        </div>
         {% empty %}
-        <p style="text-align: center; color: yellow; font-size: 1.25rem">
+        <p style="text-align: center; color: blueviolet; font-size: 1.25rem">
           No items yet. Add one above!
         </p>
         {% endfor %}
