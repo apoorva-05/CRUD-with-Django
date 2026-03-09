@@ -16,22 +16,7 @@
   </head>
   <body>
     <section class="section-center">
-<<<<<<< HEAD
-      <!-- Messages -->
-      <pre>
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-  </pre>
       <!-- Add / Edit Form -->
-=======
-      {% if messages %} {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-      {% endfor %} {% endif %}
-
->>>>>>> 83f3d6d (Improved UI with background and animations)
       <form
         method="POST"
         action="{% if edit_item %}{% url 'grocery:update' edit_item.id %}{% else %}{% url 'grocery:add' %}{% endif %}"
