@@ -16,10 +16,10 @@
   </head>
   <body>
     <section class="section-center">
-      <!-- Form -->
+      <!-- Add Item Form -->
       <form method="POST" action="{% url 'grocery:add' %}">
         {% csrf_token %}
-        <h2>grocery bud</h2>
+        <h2>Grocery Bud</h2>
         <div class="form-control">
           <input
             type="text"
@@ -27,40 +27,48 @@
             class="form-input"
             placeholder="e.g. eggs"
           />
-          <button type="submit" class="btn">add item</button>
+          <button type="submit" class="btn">Add Item</button>
         </div>
       </form>
-      <!-- Items List -->
+
+      <!-- Items List with pre -->
       <pre>
-      <div class="items">
-        {% for item in items %}
-            <div class="single-item">
-                <form method="POST" action="{% url 'grocery:toggle' item.id %}">
-                    {% csrf_token %}
-                    <input type="checkbox"
-                            {% if item.completed %}checked{% endif %}
-                            onchange="this.form.submit()" />
-                </form>
-                <p style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %}">{{ item.name }}</p>
-                <a href="#" class="btn icon-btn edit-btn">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </a>
-                <form
-                  method="POST"
-                  action="{% url 'grocery:delete' item.id %}"
-                  style="display: inline"
-                >
-                  {% csrf_token %}
-                  <button type="submit" class="btn icon-btn remove-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                  </button>
-                </form>
-            </div>
-        {% empty %}
-            <p style="text-align: center; color: #888;">No items yet. Add one above!</p>
-        {% endfor %}
+<div class="items">
+{% for item in items %}
+    <div class="single-item">
+
+        <!-- Toggle Completed Checkbox -->
+        <form method="POST" action="{% url 'grocery:toggle' item.id %}">
+            {% csrf_token %}
+            <input type="checkbox"
+                   {% if item.completed %}checked{% endif %}
+                   onclick="this.form.submit(); this.disabled=true;" />
+        </form>
+
+        <!-- Item Name -->
+        <p style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %};">
+            {{ item.name }}
+        </p>
+
+        <!-- Edit Button -->
+        <a href="{% url 'grocery:edit' item.id %}" class="btn icon-btn edit-btn">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+
+        <!-- Delete Button -->
+        <form method="POST" action="{% url 'grocery:delete' item.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn icon-btn remove-btn">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        </form>
+
     </div>
-    </pre>
+{% empty %}
+    <p style="text-align: center; color: #888;">No items yet. Add one above!</p>
+{% endfor %}
+</div>
+      </pre>
     </section>
   </body>
 </html>
